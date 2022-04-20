@@ -43,13 +43,15 @@ class AdminController extends BaseAdminController
     {
         $thing = Thing::create($request->validated());
 
-        return $this->redirect($request, $thing);
+        return $this->redirect($request, $thing)
+            ->withMessage(__('Item successfully created.'));
     }
 
     public function update(thing $thing, FormRequest $request): RedirectResponse
     {
         $thing->update($request->validated());
 
-        return $this->redirect($request, $thing);
+        return $this->redirect($request, $thing)
+            ->withMessage(__('Item successfully updated.'));
     }
 }
