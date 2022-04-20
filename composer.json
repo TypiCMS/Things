@@ -1,0 +1,16 @@
+{
+    "name": "typicms/things",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Samuel De Backer",
+            "email": "sdebacker@gmail.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "~9.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

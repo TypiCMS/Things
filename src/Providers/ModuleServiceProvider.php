@@ -1,0 +1,45 @@
+<?php
+
+namespace TypiCMS\Modules\Things\Providers;
+
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+use TypiCMS\Modules\Core\Facades\TypiCMS;
+use TypiCMS\Modules\Core\Observers\SlugObserver;
+use TypiCMS\Modules\Things\Composers\SidebarViewComposer;
+use TypiCMS\Modules\Things\Facades\Things;
+use TypiCMS\Modules\Things\Models\Thing;
+
+class ModuleServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'typicms.modules.things');
+
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'things');
+
+        $this->publishes([__DIR__.'/../database/migrations/create_things_table.php.stub' => getMigrationFileName('create_things_table')], 'typicms-migrations');
+
+        AliasLoader::getInstance()->alias('Things', Things::class);
+
+        // Observers
+        Thing::observe(new SlugObserver());
+
+        View::composer('core::admin._sidebar', SidebarViewComposer::class);
+
+        /*
+         * Add the page in the view.
+         */
+        View::composer('things::public.*', function ($view) {
+            $view->page = TypiCMS::getPageLinkedToModule('things');
+        });
+    }
+
+    public function register(): void
+    {
+        $this->app->register(RouteServiceProvider::class);
+
+        $this->app->bind('Things', Thing::class);
+    }
+}
