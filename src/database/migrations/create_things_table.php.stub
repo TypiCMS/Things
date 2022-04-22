@@ -12,9 +12,8 @@ class CreateThingsTable extends Migration
     public function up()
     {
         Schema::create('things', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->integer('image_id')->unsigned()->nullable();
+            $table->id();
+            $table->foreignId('image_id')->nullable();
             $table->json('status');
             $table->json('title');
             $table->json('slug');
