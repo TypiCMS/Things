@@ -29,7 +29,7 @@
 
     <template slot="table-row" slot-scope="{ model, checkedModels, loading }">
         <td class="checkbox" v-if="$can('update things')||$can('delete things')"><item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox></td>
-        <td v-if="$can('update things')">@include('core::admin._button-edit', ['module' => 'things'])</td>
+        <td v-if="$can('update things')"><item-list-edit-button :url="'/admin/things/'+model.id+'/edit'"></item-list-edit-button></td>
         <td><item-list-status-button :model="model"></item-list-status-button></td>
         <td><img :src="model.thumb" alt="" height="27"></td>
         <td v-html="model.title_translated"></td>
