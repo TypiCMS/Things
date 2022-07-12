@@ -19,8 +19,6 @@ class ModuleServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'things');
 
-        $this->publishes([__DIR__.'/../database/migrations/create_things_table.php.stub' => getMigrationFileName('create_things_table')], 'typicms-migrations');
-
         AliasLoader::getInstance()->alias('Things', Things::class);
 
         // Observers
