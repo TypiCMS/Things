@@ -2,7 +2,7 @@
 
 return [
     'linkable_to_page' => true,
-    'per_page' => 230,
+    'per_page' => 30,
     'order' => [
         'id' => 'desc',
     ],
