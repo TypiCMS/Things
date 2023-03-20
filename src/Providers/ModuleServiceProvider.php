@@ -17,6 +17,8 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/things.php', 'typicms.modules.things');
 
+        $this->loadRoutesFrom(__DIR__.'/../routes/things.php');
+
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'things');
 
         AliasLoader::getInstance()->alias('Things', Things::class);
@@ -36,8 +38,6 @@ class ModuleServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->app->register(RouteServiceProvider::class);
-
         $this->app->bind('Things', Thing::class);
     }
 }
