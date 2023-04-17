@@ -16,7 +16,7 @@ if ($page = TypiCMS::getPageLinkedToModule('things')) {
     $middleware = $page->private ? ['public', 'auth'] : ['public'];
     foreach (locales() as $lang) {
         if ($page->isPublished($lang) && $uri = $page->uri($lang)) {
-            Route::middleware($middleware)->prefix($uri)->name($lang.'::')->group(function (Router $router) {
+            Route::middleware($middleware)->prefix($uri)->name($lang . '::')->group(function (Router $router) {
                 $router->get('/', [PublicController::class, 'index'])->name('index-things');
                 $router->get('{slug}', [PublicController::class, 'show'])->name('thing');
             });
