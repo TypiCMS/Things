@@ -19,13 +19,13 @@ class Thing extends Base
     use Historable;
     use PresentableTrait;
 
-    protected $presenter = ModulePresenter::class;
+    protected string $presenter = ModulePresenter::class;
 
     protected $guarded = [];
 
     protected $appends = ['thumb'];
 
-    public $translatable = [
+    public array $translatable = [
         'title',
         'slug',
         'status',
