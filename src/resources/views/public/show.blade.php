@@ -23,12 +23,12 @@
                 <p class="thing-summary">{!! nl2br($model->summary) !!}</p>
             @endempty
             @empty(!$model->image)
-                <picture class="thing-picture">
+                <figure class="thing-picture">
                     <img class="thing-picture-image" src="{{ $model->present()->image(2000) }}" width="{{ $model->image->width }}" height="{{ $model->image->height }}" alt="">
                     @empty(!$model->image->description)
-                        <legend class="thing-picture-legend">{{ $model->image->description }}</legend>
+                        <figcaption class="thing-picture-legend">{{ $model->image->description }}</figcaption>
                     @endempty
-                </picture>
+                </figure>
             @endempty
             @empty(!$model->body)
                 <div class="rich-content">{!! $model->present()->body !!}</div>
