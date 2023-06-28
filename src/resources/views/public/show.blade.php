@@ -24,13 +24,7 @@
 
             @empty(! $model->image)
                 <figure class="thing-picture">
-                    <img
-                        class="thing-picture-image"
-                        src="{{ $model->present()->image(2000) }}"
-                        width="{{ $model->image->width }}"
-                        height="{{ $model->image->height }}"
-                        alt=""
-                    />
+                    <img class="thing-picture-image" src="{{ $model->present()->image(2000) }}" width="{{ $model->image->width }}" height="{{ $model->image->height }}" alt="" />
                     @empty(! $model->image->description)
                         <figcaption class="thing-picture-legend">{{ $model->image->description }}</figcaption>
                     @endempty
