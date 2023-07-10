@@ -1,10 +1,10 @@
 @extends('core::public.master')
 
-@section('title', $model->title.' – '.__('Things').' – '.$websiteTitle)
+@section('title', $model->title . ' – ' . __('Things') . ' – ' . $websiteTitle)
 @section('ogTitle', $model->title)
 @section('description', $model->summary)
 @section('ogImage', $model->present()->image(1200, 630))
-@section('bodyClass', 'body-things body-thing-'.$model->id.' body-page body-page-'.$page->id)
+@section('bodyClass', 'body-things body-thing-' . $model->id . ' body-page body-page-' . $page->id)
 
 @section('content')
     <article class="thing">
@@ -18,20 +18,20 @@
         </header>
         <div class="thing-body">
             @include('things::public._json-ld', ['thing' => $model])
-            @empty(! $model->summary)
+            @empty(!$model->summary)
                 <p class="thing-summary">{!! nl2br($model->summary) !!}</p>
             @endempty
 
-            @empty(! $model->image)
+            @empty(!$model->image)
                 <figure class="thing-picture">
                     <img class="thing-picture-image" src="{{ $model->present()->image(2000) }}" width="{{ $model->image->width }}" height="{{ $model->image->height }}" alt="" />
-                    @empty(! $model->image->description)
+                    @empty(!$model->image->description)
                         <figcaption class="thing-picture-legend">{{ $model->image->description }}</figcaption>
                     @endempty
                 </figure>
             @endempty
 
-            @empty(! $model->body)
+            @empty(!$model->body)
                 <div class="rich-content">{!! $model->present()->body !!}</div>
             @endempty
 

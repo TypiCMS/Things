@@ -1,6 +1,6 @@
 @extends('pages::public.master')
 
-@section('bodyClass', 'body-things body-things-index body-page body-page-'.$page->id)
+@section('bodyClass', 'body-things body-things-index body-page body-page-' . $page->id)
 
 @section('page')
     <div class="page-body">
