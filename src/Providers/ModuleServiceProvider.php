@@ -6,7 +6,6 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
-use TypiCMS\Modules\Core\Observers\SlugObserver;
 use TypiCMS\Modules\Things\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Things\Facades\Things;
 use TypiCMS\Modules\Things\Models\Thing;
@@ -22,9 +21,6 @@ class ModuleServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'things');
 
         AliasLoader::getInstance()->alias('Things', Things::class);
-
-        // Observers
-        Thing::observe(new SlugObserver());
 
         View::composer('core::admin._sidebar', SidebarViewComposer::class);
 
