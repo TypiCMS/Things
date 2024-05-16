@@ -4,7 +4,6 @@ namespace TypiCMS\Modules\Things\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-use TypiCMS\Modules\Core\Facades\TypiCMS;
 use TypiCMS\Modules\Things\Http\Controllers\AdminController;
 use TypiCMS\Modules\Things\Http\Controllers\ApiController;
 use TypiCMS\Modules\Things\Http\Controllers\PublicController;
@@ -12,7 +11,7 @@ use TypiCMS\Modules\Things\Http\Controllers\PublicController;
 /*
  * Front office routes
  */
-if ($page = TypiCMS::getPageLinkedToModule('things')) {
+if ($page = getPageLinkedToModule('things')) {
     $middleware = $page->private ? ['public', 'auth'] : ['public'];
     foreach (locales() as $lang) {
         if ($page->isPublished($lang) && $uri = $page->uri($lang)) {

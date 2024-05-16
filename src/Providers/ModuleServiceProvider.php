@@ -5,7 +5,6 @@ namespace TypiCMS\Modules\Things\Providers;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use TypiCMS\Modules\Core\Facades\TypiCMS;
 use TypiCMS\Modules\Core\Observers\SlugObserver;
 use TypiCMS\Modules\Things\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Things\Facades\Things;
@@ -32,7 +31,7 @@ class ModuleServiceProvider extends ServiceProvider
          * Add the page in the view.
          */
         View::composer('things::public.*', function ($view) {
-            $view->page = TypiCMS::getPageLinkedToModule('things');
+            $view->page = getPageLinkedToModule('things');
         });
     }
 
