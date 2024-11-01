@@ -18,22 +18,22 @@
         </header>
         <div class="thing-body">
             @include('things::public._json-ld', ['thing' => $model])
-            @empty(!$model->summary)
+            @if(!empty($model->summary))
                 <p class="thing-summary">{!! nl2br($model->summary) !!}</p>
-            @endempty
+            @endif
 
-            @empty(!$model->image)
+            @if(!empty($model->image))
                 <figure class="thing-picture">
                     <img class="thing-picture-image" src="{{ $model->present()->image(2000) }}" width="{{ $model->image->width }}" height="{{ $model->image->height }}" alt="" />
-                    @empty(!$model->image->description)
+                    @if(!empty($model->image->description))
                         <figcaption class="thing-picture-legend">{{ $model->image->description }}</figcaption>
-                    @endempty
+                    @endif
                 </figure>
-            @endempty
+            @endif
 
-            @empty(!$model->body)
+            @if(!empty($model->body))
                 <div class="rich-content">{!! $model->present()->body !!}</div>
-            @endempty
+            @endif
 
             @include('files::public._document-list')
             @include('files::public._image-list')
