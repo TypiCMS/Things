@@ -10,7 +10,7 @@
     ],
     "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ $thing->uri() }}"
+    "@id": "{{ $thing->url() }}"
     }
     }
     </script>
