@@ -33,7 +33,7 @@ class AdminController extends BaseAdminController
             ->with(compact('model'));
     }
 
-    public function edit(thing $thing): View
+    public function edit(Thing $thing): View
     {
         return view('things::admin.edit')
             ->with(['model' => $thing]);
@@ -47,7 +47,7 @@ class AdminController extends BaseAdminController
             ->withMessage(__('Item successfully created.'));
     }
 
-    public function update(thing $thing, FormRequest $request): RedirectResponse
+    public function update(Thing $thing, FormRequest $request): RedirectResponse
     {
         $thing->update($request->validated());
 
