@@ -1,7 +1,5 @@
 <?php
 
-namespace TypiCMS\Modules\Things\Providers;
-
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Things\Http\Controllers\AdminController;
