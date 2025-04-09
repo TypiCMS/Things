@@ -10,7 +10,11 @@ class PublicController extends BasePublicController
 {
     public function index(): View
     {
-        $models = Thing::published()->order()->with('image')->get();
+        $models = Thing::query()
+            ->published()
+            ->order()
+            ->with('image')
+            ->get();
 
         return view('things::public.index')
             ->with(compact('models'));
@@ -18,7 +22,10 @@ class PublicController extends BasePublicController
 
     public function show($slug): View
     {
-        $model = Thing::published()->whereSlugIs($slug)->firstOrFail();
+        $model = Thing::query()
+            ->published()
+            ->whereSlugIs($slug)
+            ->firstOrFail();
 
         return view('things::public.show')
             ->with(compact('model'));
