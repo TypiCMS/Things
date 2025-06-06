@@ -4,6 +4,7 @@ namespace TypiCMS\Modules\Things\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 use Laracasts\Presenter\PresentableTrait;
 use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
@@ -12,6 +13,12 @@ use TypiCMS\Modules\Core\Traits\HasFiles;
 use TypiCMS\Modules\Core\Traits\Historable;
 use TypiCMS\Modules\Things\Presenters\ModulePresenter;
 
+/**
+ * @property-read int $id
+ * @property-read string $thumb
+ * @property-read Carbon $created_at
+ * @property-read Carbon $updated_at
+ */
 class Thing extends Base
 {
     use HasFiles;
