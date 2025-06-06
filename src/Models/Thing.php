@@ -14,10 +14,15 @@ use TypiCMS\Modules\Core\Traits\Historable;
 use TypiCMS\Modules\Things\Presenters\ModulePresenter;
 
 /**
- * @property-read int $id
- * @property-read string $thumb
- * @property-read Carbon $created_at
- * @property-read Carbon $updated_at
+ * @property int $id
+ * @property int|null $image_id
+ * @property array<array-key, mixed> $status
+ * @property array<array-key, mixed> $title
+ * @property array<array-key, mixed> $slug
+ * @property array<array-key, mixed> $summary
+ * @property array<array-key, mixed> $body
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
 class Thing extends Base
 {
@@ -47,11 +52,13 @@ class Thing extends Base
         );
     }
 
+    /** @return BelongsTo<File, $this> */
     public function image(): BelongsTo
     {
         return $this->belongsTo(File::class, 'image_id');
     }
 
+    /** @return BelongsTo<File, $this> */
     public function ogImage(): BelongsTo
     {
         return $this->belongsTo(File::class, 'og_image_id');
