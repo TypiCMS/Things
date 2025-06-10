@@ -45,6 +45,9 @@ class Thing extends Base
         'body',
     ];
 
+    /**
+     * @return Attribute<string, null>
+     */
     protected function thumb(): Attribute
     {
         return Attribute::make(
