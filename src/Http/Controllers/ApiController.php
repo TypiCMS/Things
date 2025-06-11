@@ -13,6 +13,7 @@ use TypiCMS\Modules\Things\Models\Thing;
 
 class ApiController extends BaseApiController
 {
+    /** @return LengthAwarePaginator<int, mixed> */
     public function index(Request $request): LengthAwarePaginator
     {
         $query = Thing::query()->selectFields();

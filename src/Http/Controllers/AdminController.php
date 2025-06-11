@@ -42,7 +42,7 @@ class AdminController extends BaseAdminController
 
     public function store(FormRequest $request): RedirectResponse
     {
-        $thing = Thing::create($request->validated());
+        $thing = Thing::query()->create($request->validated());
 
         return $this->redirect($request, $thing)
             ->withMessage(__('Item successfully created.'));
