@@ -7,7 +7,7 @@ return [
         'id' => 'desc',
     ],
     'sidebar' => [
-        'icon' => '<i class="bi bi-box"></i>',
+        'icon' => '<i class="icon-grid-2x2"></i>',
         'weight' => 8,
     ],
     'permissions' => [
