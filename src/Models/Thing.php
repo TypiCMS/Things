@@ -46,6 +46,11 @@ class Thing extends Base
         'body',
     ];
 
+    /** @var array<string> */
+    public array $tipTapContent = [
+        'body',
+    ];
+
     /** @return Attribute<string, null> */
     protected function thumb(): Attribute
     {
