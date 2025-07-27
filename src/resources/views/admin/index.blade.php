@@ -3,7 +3,7 @@
 @section('title', __('Things'))
 
 @section('content')
-    <item-list url-base="/api/things" fields="id,image_id,status,title" table="things" title="things" include="image" :exportable="true" :searchable="['title']" :sorting="['title_translated']">
+    <item-list url-base="/api/things" fields="id,image_id,status,title" table="things" title="things" include="image" :exportable="true" :searchable="['title']" :duplicable="false" :sorting="['title_translated']">
         <template #add-button v-if="$can('create things')">
             @include('core::admin._button-create', ['module' => 'things'])
         </template>

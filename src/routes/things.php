@@ -39,5 +39,6 @@ Route::middleware('admin')->prefix('admin')->name('admin::')->group(function (Ro
 Route::middleware(['api', 'auth:api'])->prefix('api')->group(function (Router $router) {
     $router->get('things', [ApiController::class, 'index'])->middleware('can:read things');
     $router->patch('things/{thing}', [ApiController::class, 'updatePartial'])->middleware('can:update things');
+    $router->post('things/{thing}/duplicate', [ApiController::class, 'duplicate'])->middleware('can:create things');
     $router->delete('things/{thing}', [ApiController::class, 'destroy'])->middleware('can:delete things');
 });
