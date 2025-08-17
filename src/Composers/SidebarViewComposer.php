@@ -22,7 +22,6 @@ class SidebarViewComposer
                 $item->icon = config('typicms.modules.things.sidebar.icon');
                 $item->weight = config('typicms.modules.things.sidebar.weight');
                 $item->route('admin::index-things');
-                $item->append('admin::create-thing');
             });
         });
     }
