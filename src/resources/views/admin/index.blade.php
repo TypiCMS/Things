@@ -4,8 +4,8 @@
 
 @section('content')
     <item-list url-base="/api/things" fields="id,image_id,status,title" table="things" title="things" include="image" :exportable="true" :searchable="['title']" :duplicable="false" :sorting="['title_translated']">
-        <template #add-button v-if="$can('create things')">
-            @include('core::admin._button-create', ['module' => 'things'])
+        <template #top-buttons v-if="$can('create things')">
+            <x-core::create-button :url="route('admin::create-thing')" :label="__('Create thing')" />
         </template>
 
         <template #columns="{ sortArray }">

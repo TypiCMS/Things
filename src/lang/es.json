@@ -1,7 +1,8 @@
 {
-    "# things": "0 objeto|1 objeto|{count} objetos",
-    "Back to things list": "Volver a los objetos",
-    "Edit thing": "Editar objeto",
-    "New thing": "Nuevo objeto",
-    "Things": "Objetos"
+    "# things": "0 thing|1 thing|{count} things",
+    "Back to things list": "Volver a los things",
+    "Edit thing": "Editar thing",
+    "Create thing": "Crear thing",
+    "New thing": "Nuevo thing",
+    "Things": "Things"
 }
