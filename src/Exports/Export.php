@@ -3,7 +3,6 @@
 namespace TypiCMS\Modules\Things\Exports;
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -21,7 +20,7 @@ use TypiCMS\Modules\Things\Models\Thing;
  */
 class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, WithHeadings, WithMapping
 {
-    /** @return Collection<int, Model> */
+    /** @return Collection<int, Thing> */
     public function collection(): Collection
     {
         return QueryBuilder::for(Thing::class)
