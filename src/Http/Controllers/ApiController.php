@@ -43,7 +43,7 @@ class ApiController extends BaseApiController
         $thing->save();
     }
 
-    public function duplicate(Thing $thing)
+    public function duplicate(Thing $thing): void
     {
         $newThing = $thing->replicate();
         $newThing->setTranslations('status', []);
