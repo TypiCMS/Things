@@ -17,15 +17,14 @@ class ApiController extends BaseApiController
     public function index(Request $request): LengthAwarePaginator
     {
         $query = Thing::query()->selectFields();
-        $data = QueryBuilder::for($query)
+
+        return QueryBuilder::for($query)
             ->allowedSorts(['status_translated', 'title_translated'])
             ->allowedFilters([
                 AllowedFilter::custom('title', new FilterOr()),
             ])
             ->allowedIncludes(['image'])
             ->paginate($request->integer('per_page'));
-
-        return $data;
     }
 
     protected function updatePartial(Thing $thing, Request $request): void

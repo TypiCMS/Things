@@ -17,7 +17,7 @@ class PublicController extends BasePublicController
             ->get();
 
         return view('things::public.index')
-            ->with(compact('models'));
+            ->with(['models' => $models]);
     }
 
     public function show(string $slug): View
@@ -28,6 +28,6 @@ class PublicController extends BasePublicController
             ->firstOrFail();
 
         return view('things::public.show')
-            ->with(compact('model'));
+            ->with(['model' => $model]);
     }
 }

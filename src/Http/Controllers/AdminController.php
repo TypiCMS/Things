@@ -31,7 +31,7 @@ class AdminController extends BaseAdminController
         $model = new Thing();
 
         return view('things::admin.create')
-            ->with(compact('model'));
+            ->with(['model' => $model]);
     }
 
     public function edit(Thing $thing): View
