@@ -6,17 +6,23 @@
 
 <div class="content">
     <x-core::form-errors />
-
-    <file-manager></file-manager>
-    <file-field type="image" field="image_id" :init-file="{{ $model->image ?? 'null' }}"></file-field>
-    <file-field type="image" field="og_image_id" :init-file="{{ $model->ogImage ?? 'null' }}" label="Open Graph image"></file-field>
-    <files-field :init-files="{{ $model->files }}"></files-field>
-
-    <x-core::title-and-slug-fields :locales="locales()" />
-    <div class="mb-3">
-        {!! TranslatableBootForm::hidden('status')->value(0) !!}
-        {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
+    <div class="row">
+        <div class="col-lg-8">
+            <x-core::title-and-slug-fields :locales="locales()" />
+            <div class="mb-3">
+                {!! TranslatableBootForm::hidden('status')->value(0) !!}
+                {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
+            </div>
+            {!! TranslatableBootForm::textarea(__('Summary'), 'summary')->rows(4) !!}
+            <x-core::tiptap-editors :model="$model" name="body" :label="__('Body')" />
+        </div>
+        <div class="col-lg-4">
+            <div class="right-column">
+                <file-manager></file-manager>
+                <file-field type="image" field="image_id" :init-file="{{ $model->image ?? 'null' }}"></file-field>
+                <file-field type="image" field="og_image_id" :init-file="{{ $model->ogImage ?? 'null' }}" label="Open Graph image"></file-field>
+                <files-field :init-files="{{ $model->files }}"></files-field>
+            </div>
+        </div>
     </div>
-    {!! TranslatableBootForm::textarea(__('Summary'), 'summary')->rows(4) !!}
-    <x-core::tiptap-editors :model="$model" name="body" :label="__('Body')" />
 </div>
