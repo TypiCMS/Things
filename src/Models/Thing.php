@@ -5,6 +5,7 @@ namespace TypiCMS\Modules\Things\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Route;
 use Laracasts\Presenter\PresentableTrait;
 use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
@@ -50,6 +51,15 @@ class Thing extends Base
     public array $tipTapContent = [
         'body',
     ];
+
+    public function url(?string $locale = null): string
+    {
+        $locale ??= app()->getLocale();
+        $route = $locale . '::thing';
+        $slug = $this->translate('slug', $locale) ?: null;
+
+        return Route::has($route) && $slug ? url(route($route, $slug)) : url('/');
+    }
 
     /** @return Attribute<string, null> */
     protected function thumb(): Attribute
