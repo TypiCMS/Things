@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Things\Providers;
 
 use Illuminate\Foundation\AliasLoader;

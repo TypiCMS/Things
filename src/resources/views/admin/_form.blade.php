@@ -1,14 +1,14 @@
 <div class="header">
     <x-core::back-button :url="$model->indexUrl()" :title="__('Things')" />
     <x-core::title :$model :default="__('New thing')" />
-    <x-core::form-buttons :$model :locales="locales()" />
+    <x-core::form-buttons :$model />
 </div>
 
 <div class="content">
     <x-core::form-errors />
     <div class="row">
         <div class="col-lg-8">
-            <x-core::title-and-slug-fields :locales="locales()" />
+            <x-core::title-and-slug-fields />
             <div class="mb-3">
                 {!! TranslatableBootForm::hidden('status')->value(0) !!}
                 {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}

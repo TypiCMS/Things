@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Core\Models\Page;
@@ -13,11 +15,14 @@ use TypiCMS\Modules\Things\Http\Controllers\PublicController;
 if (($page = getPageLinkedToModule('things')) instanceof Page) {
     $middleware = $page->private ? ['public', 'auth'] : ['public'];
     foreach (locales() as $lang) {
-        if ($page->isPublished($lang) && $path = $page->path($lang)) {
-            Route::middleware($middleware)->prefix($path)->name($lang . '::')->group(function (Router $router): void {
-                $router->get('/', [PublicController::class, 'index'])->name('index-things');
-                $router->get('{slug}', [PublicController::class, 'show'])->name('thing');
-            });
+        if ($page->isPublished($lang) && ($path = $page->path($lang))) {
+            Route::middleware($middleware)
+                ->prefix($path)
+                ->name($lang . '::')
+                ->group(function (Router $router): void {
+                    $router->get('/', [PublicController::class, 'index'])->name('index-things');
+                    $router->get('{slug}', [PublicController::class, 'show'])->name('thing');
+                });
         }
     }
 }
@@ -25,14 +30,32 @@ if (($page = getPageLinkedToModule('things')) instanceof Page) {
 /*
  * Admin routes
  */
-Route::middleware('admin')->prefix('admin')->name('admin::')->group(function (Router $router): void {
-    $router->get('things', [AdminController::class, 'index'])->name('index-things')->middleware('can:read things');
-    $router->get('things/export', [AdminController::class, 'export'])->name('export-things')->middleware('can:read things');
-    $router->get('things/create', [AdminController::class, 'create'])->name('create-thing')->middleware('can:create things');
-    $router->get('things/{thing}/edit', [AdminController::class, 'edit'])->name('edit-thing')->middleware('can:read things');
-    $router->post('things', [AdminController::class, 'store'])->name('store-thing')->middleware('can:create things');
-    $router->put('things/{thing}', [AdminController::class, 'update'])->name('update-thing')->middleware('can:update things');
-});
+Route::middleware('admin')
+    ->prefix('admin')
+    ->name('admin::')
+    ->group(function (Router $router): void {
+        $router->get('things', [AdminController::class, 'index'])->name('index-things')->middleware('can:read things');
+        $router
+            ->get('things/export', [AdminController::class, 'export'])
+            ->name('export-things')
+            ->middleware('can:read things');
+        $router
+            ->get('things/create', [AdminController::class, 'create'])
+            ->name('create-thing')
+            ->middleware('can:create things');
+        $router
+            ->get('things/{thing}/edit', [AdminController::class, 'edit'])
+            ->name('edit-thing')
+            ->middleware('can:read things');
+        $router
+            ->post('things', [AdminController::class, 'store'])
+            ->name('store-thing')
+            ->middleware('can:create things');
+        $router
+            ->put('things/{thing}', [AdminController::class, 'update'])
+            ->name('update-thing')
+            ->middleware('can:update things');
+    });
 
 /*
  * API routes

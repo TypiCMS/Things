@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Things\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
@@ -12,7 +14,7 @@ use TypiCMS\Modules\Things\Exports\Export;
 use TypiCMS\Modules\Things\Http\Requests\FormRequest;
 use TypiCMS\Modules\Things\Models\Thing;
 
-class AdminController extends BaseAdminController
+final class AdminController extends BaseAdminController
 {
     public function index(): View
     {
@@ -30,29 +32,25 @@ class AdminController extends BaseAdminController
     {
         $model = new Thing();
 
-        return view('things::admin.create')
-            ->with(['model' => $model]);
+        return view('things::admin.create', ['model' => $model]);
     }
 
     public function edit(Thing $thing): View
     {
-        return view('things::admin.edit')
-            ->with(['model' => $thing]);
+        return view('things::admin.edit', ['model' => $thing]);
     }
 
     public function store(FormRequest $request): RedirectResponse
     {
         $thing = Thing::query()->create($request->validated());
 
-        return $this->redirect($request, $thing)
-            ->withMessage(__('Item successfully created.'));
+        return $this->redirect($request, $thing)->withMessage(__('Item successfully created.'));
     }
 
     public function update(Thing $thing, FormRequest $request): RedirectResponse
     {
         $thing->update($request->validated());
 
-        return $this->redirect($request, $thing)
-            ->withMessage(__('Item successfully updated.'));
+        return $this->redirect($request, $thing)->withMessage(__('Item successfully updated.'));
     }
 }
