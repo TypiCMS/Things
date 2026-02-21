@@ -11,7 +11,7 @@
         <header class="thing-header">
             <div class="thing-header-container">
                 <div class="thing-header-navigator">
-                    @include('core::public._items-navigator', ['module' => 'Things', 'model' => $model])
+                    <x-core::items-navigator module="Things" :$model :$page />
                 </div>
                 <h1 class="thing-title">{{ $model->title }}</h1>
             </div>
