@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Things\Providers;
 
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Core\Observers\SlugObserver;
 use TypiCMS\Modules\Core\Observers\TipTapHTMLObserver;
 use TypiCMS\Modules\Things\Composers\SidebarViewComposer;
-use TypiCMS\Modules\Things\Facades\Things;
 use TypiCMS\Modules\Things\Models\Thing;
 
 class ModuleServiceProvider extends ServiceProvider
@@ -22,8 +20,6 @@ class ModuleServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../routes/things.php');
 
         $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'things');
-
-        AliasLoader::getInstance()->alias('Things', Things::class);
 
         // Observers
         Thing::observe(new SlugObserver());
@@ -37,10 +33,5 @@ class ModuleServiceProvider extends ServiceProvider
         View::composer('things::public.*', function ($view): void {
             $view->page = getPageLinkedToModule('things');
         });
-    }
-
-    public function register(): void
-    {
-        $this->app->bind('Things', Thing::class);
     }
 }

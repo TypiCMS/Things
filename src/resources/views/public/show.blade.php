@@ -11,7 +11,7 @@
         <header class="thing-header">
             <div class="thing-header-container">
                 <div class="thing-header-navigator">
-                    <x-core::items-navigator module="Things" :$model :$page />
+                    <x-core::items-navigator :$model :$page />
                 </div>
                 <h1 class="thing-title">{{ $model->title }}</h1>
             </div>
