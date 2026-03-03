@@ -17,7 +17,17 @@
             </div>
         </header>
         <div class="thing-body">
-            @include('things::public._json-ld', ['thing' => $model])
+            {{-- <x-core::json-ld :schema="[
+                '@context' => 'https://schema.org',
+                '@type' => '',
+                'name' => $model->title,
+                'description' => $model->summary !== '' ? $model->summary : strip_tags($model->body),
+                'image' => [$model->present()->image()],
+                'mainEntityOfPage' => [
+                    '@type' => 'WebPage',
+                    '@id' => $model->url(),
+                ],
+            ]" /> --}}
             @if ($model->summary)
                 <p class="thing-summary">{!! nl2br($model->summary) !!}</p>
             @endif
