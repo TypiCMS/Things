@@ -6,7 +6,7 @@
     "name": "{{ $thing->title }}",
     "description": "{{ $thing->summary !== '' ? $thing->summary : strip_tags($thing->body) }}",
     "image": [
-    "{{ $thing->present()->image() }}"
+    "{{ $thing->imageUrl() }}"
     ],
     "mainEntityOfPage": {
     "@type": "WebPage",
