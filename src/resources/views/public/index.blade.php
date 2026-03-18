@@ -6,11 +6,15 @@
     <x-core::json-ld :schema="[
         '@context' => 'https://schema.org',
         '@type' => 'ItemList',
-        'itemListElement' => $models->map(fn ($item, $index) => [
-            '@type' => 'ListItem',
-            'position' => $index + 1,
-            'url' => $item->url(),
-        ])->all(),
+        'itemListElement' => $models
+            ->map(
+                fn($item, $index) => [
+                    '@type' => 'ListItem',
+                    'position' => $index + 1,
+                    'url' => $item->url(),
+                ],
+            )
+            ->all(),
     ]" />
     <div class="page-body">
         <div class="page-body-container">
