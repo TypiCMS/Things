@@ -26,10 +26,10 @@ class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, Wi
     public function collection(): Collection
     {
         return QueryBuilder::for(Thing::class)
-            ->allowedSorts(['status_translated', 'title_translated'])
-            ->allowedFilters([
+            ->allowedSorts('status_translated', 'title_translated')
+            ->allowedFilters(
                 AllowedFilter::custom('title', new FilterOr()),
-            ])
+            )
             ->get();
     }
 
