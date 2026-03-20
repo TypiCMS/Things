@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Things\Models;
 
-use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -36,7 +35,6 @@ use TypiCMS\Translatable\HasTranslations;
  */
 class Thing extends Model
 {
-    use Cachable;
     use HasAdminUrls;
     use HasConfigurableOrder;
     use HasFiles;
