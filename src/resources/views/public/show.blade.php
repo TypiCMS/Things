@@ -22,7 +22,7 @@
                 '@type' => '',
                 'name' => $model->title,
                 'description' => $model->summary !== '' ? $model->summary : strip_tags($model->body),
-                'image' => [$model->imageUrl()],
+                'image' => [$model->image?->render()],
                 'mainEntityOfPage' => [
                     '@type' => 'WebPage',
                     '@id' => $model->url(),
@@ -34,7 +34,7 @@
 
             @if ($model->image)
                 <figure class="thing-picture">
-                    <img class="thing-picture-image" src="{{ $model->imageUrl(2000) }}" width="{{ $model->image->width }}" height="{{ $model->image->height }}" alt="" />
+                    <img class="thing-picture-image" src="{{ $model->image->render(2000) }}" width="{{ $model->image->width }}" height="{{ $model->image->height }}" alt="" />
                     @if ($model->image->description)
                         <figcaption class="thing-picture-legend">{{ $model->image->description }}</figcaption>
                     @endif
