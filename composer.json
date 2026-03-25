@@ -1,6 +1,6 @@
 {
     "name": "typicms/things",
-    "description": "",
+    "description": "A starter module template for creating new content types in TypiCMS applications.",
     "license": "MIT",
     "authors": [
         {
