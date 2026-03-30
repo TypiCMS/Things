@@ -10,10 +10,13 @@ use TypiCMS\Modules\Things\Composers\SidebarViewComposer;
 
 class ModuleServiceProvider extends ServiceProvider
 {
-    public function boot(): void
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/things.php', 'typicms.modules.things');
+    }
 
+    public function boot(): void
+    {
         $this->loadRoutesFrom(__DIR__.'/../routes/things.php');
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'things');
