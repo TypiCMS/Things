@@ -12,11 +12,11 @@ class ModuleServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/things.php', 'typicms.modules.things');
+        $this->mergeConfigFrom(__DIR__.'/../config/things.php', 'typicms.modules.things');
 
-        $this->loadRoutesFrom(__DIR__ . '/../routes/things.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/things.php');
 
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'things');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'things');
 
         View::composer('core::admin._sidebar', SidebarViewComposer::class);
 

@@ -13,6 +13,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Uri;
 use TypiCMS\Modules\Core\Models\File;
+use TypiCMS\Modules\Core\Observers\SlugObserver;
+use TypiCMS\Modules\Core\Observers\TipTapHTMLObserver;
 use TypiCMS\Modules\Core\Traits\HasAdminUrls;
 use TypiCMS\Modules\Core\Traits\HasBodyPresenter;
 use TypiCMS\Modules\Core\Traits\HasConfigurableOrder;
@@ -23,8 +25,6 @@ use TypiCMS\Modules\Core\Traits\HasSelectableFields;
 use TypiCMS\Modules\Core\Traits\HasSlugScope;
 use TypiCMS\Modules\Core\Traits\Historable;
 use TypiCMS\Modules\Core\Traits\Navigable;
-use TypiCMS\Modules\Core\Observers\SlugObserver;
-use TypiCMS\Modules\Core\Observers\TipTapHTMLObserver;
 use TypiCMS\Modules\Core\Traits\Publishable;
 use TypiCMS\Translatable\HasTranslations;
 
@@ -89,7 +89,7 @@ class Thing extends Model
     {
         $url = $this->url($locale);
 
-        if (!$url) {
+        if (! $url) {
             return null;
         }
 
