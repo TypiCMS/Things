@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Things\Models;
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +23,8 @@ use TypiCMS\Modules\Core\Traits\HasSelectableFields;
 use TypiCMS\Modules\Core\Traits\HasSlugScope;
 use TypiCMS\Modules\Core\Traits\Historable;
 use TypiCMS\Modules\Core\Traits\Navigable;
+use TypiCMS\Modules\Core\Observers\SlugObserver;
+use TypiCMS\Modules\Core\Observers\TipTapHTMLObserver;
 use TypiCMS\Modules\Core\Traits\Publishable;
 use TypiCMS\Translatable\HasTranslations;
 
@@ -35,6 +39,8 @@ use TypiCMS\Translatable\HasTranslations;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
+#[ObservedBy([SlugObserver::class, TipTapHTMLObserver::class])]
+#[Unguarded]
 class Thing extends Model
 {
     use HasAdminUrls;
@@ -49,8 +55,6 @@ class Thing extends Model
     use Historable;
     use Navigable;
     use Publishable;
-
-    protected $guarded = [];
 
     protected $appends = ['thumb'];
 
