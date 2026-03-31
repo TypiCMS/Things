@@ -12,12 +12,5 @@
         "laravel/framework": "~13.0"
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "extra": {
-        "laravel": {
-            "providers": [
-                "TypiCMS\\Modules\\Things\\Providers\\ModuleServiceProvider"
-            ]
-        }
-    }
+    "prefer-stable": true
 }
