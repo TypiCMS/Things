@@ -2,9 +2,13 @@
 
 declare(strict_types=1);
 
+use TypiCMS\Modules\Things\Models\Thing;
+
 return [
+    'model' => Thing::class,
     'linkable_to_page' => true,
     'per_page' => 30,
+    'llms_txt' => true,
     'order' => [
         'id' => 'desc',
     ],
