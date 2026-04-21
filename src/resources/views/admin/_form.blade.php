@@ -1,10 +1,6 @@
-<div class="header">
-    <x-core::back-button :url="$model->indexUrl()" :title="__('Things')" />
-    <x-core::title :$model :default="__('New thing')" />
-    <x-core::form-buttons :$model />
-</div>
+<x-core::header :$model :backUrl="$model->indexUrl()" :backLabel="__('Things')" :defaultTitle="__('New thing')" />
 
-<div class="content">
+<div class="form-body">
     <x-core::form-errors />
     <div class="row">
         <div class="col-lg-8">
