@@ -21,14 +21,19 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/things.php');
 
-        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'things');
+        $this->publishes([
+            __DIR__.'/../resources/views/admin/things' => resource_path('views/admin/things'),
+        ], ['typicms-views', 'typicms-admin-views', 'typicms-admin-things-views']);
+        $this->publishes([
+            __DIR__.'/../resources/views/public/things' => resource_path('views/public/things'),
+        ], ['typicms-views', 'typicms-public-views', 'typicms-public-things-views']);
 
-        View::composer('core::admin._sidebar', SidebarViewComposer::class);
+        View::composer('admin::core._sidebar', SidebarViewComposer::class);
 
         /*
          * Add the page in the view.
          */
-        View::composer('things::public.*', function ($view): void {
+        View::composer('public::things.*', function ($view): void {
             $view->page = getPageLinkedToModule('things');
         });
     }

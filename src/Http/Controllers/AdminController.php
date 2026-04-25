@@ -18,7 +18,7 @@ final class AdminController extends BaseAdminController
 {
     public function index(): View
     {
-        return view('things::admin.index');
+        return view('admin::things.index');
     }
 
     public function export(Request $request): BinaryFileResponse
@@ -32,12 +32,12 @@ final class AdminController extends BaseAdminController
     {
         $model = new Thing;
 
-        return view('things::admin.create', ['model' => $model]);
+        return view('admin::things.create', ['model' => $model]);
     }
 
     public function edit(Thing $thing): View
     {
-        return view('things::admin.edit', ['model' => $thing]);
+        return view('admin::things.edit', ['model' => $thing]);
     }
 
     public function store(FormRequest $request): RedirectResponse
