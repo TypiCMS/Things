@@ -21,6 +21,16 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/things.php');
 
+        $this->loadViewsFrom([
+            resource_path('views/admin'),
+            __DIR__.'/../../resources/views/admin',
+        ], 'admin');
+
+        $this->loadViewsFrom([
+            resource_path('views/public'),
+            __DIR__.'/../../resources/views/public',
+        ], 'public');
+
         $this->publishes([
             __DIR__.'/../resources/views/admin/things' => resource_path('views/admin/things'),
         ], ['typicms-views', 'typicms-admin-views', 'typicms-admin-things-views']);
